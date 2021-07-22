@@ -23,10 +23,16 @@ set(KF_HEADER_FILES
         include/robot_localization/ekf_interface.h
         )
 
-find_package (Eigen3 REQUIRED NO_MODULE)
+include(cmake/CPM.cmake)
+
+CPMAddPackage("https://gitlab.com/libeigen/eigen/-/archive/3.3.7/eigen-3.3.7.tar.gz")
+
 
 add_library(${PROJECT_NAME} SHARED ${KF_SOURCE_FILES} ${KF_HEADER_FILES})
-include_directories(${EIGEN3_INCLUDE_DIR})
+include_directories(${EIGEN3_INCLUDE_DIR}
+/usr/include
+${CMAKE_CURRENT_BINARY_DIR}/_deps/eigen-src/
+)
 
 target_link_libraries(${PROJECT_NAME}  ${EIGEN3_LIBRARIES})
 
