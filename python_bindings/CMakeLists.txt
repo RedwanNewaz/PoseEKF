@@ -1,7 +1,7 @@
 
 # python bindings
 find_package(PythonLibs 3.6 REQUIRED)
-find_package(Boost COMPONENTS python REQUIRED)
+find_package(Boost COMPONENTS python3 REQUIRED)
 add_library(python_pose_ekf MODULE  SHARED python_pose_ekf.cpp)
 include_directories(../include
         ${Boost_INCLUDE_DIRS}
